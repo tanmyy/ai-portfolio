@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tanmay Kataria &amp; Machine Learning Portfolio</title>
+  <title>Tanmay Kataria — AI &amp; Machine Learning Portfolio</title>
   <meta name="description" content="Portfolio of Tanmay Kataria, Applied AI Solutions student at George Brown College — projects, skills, and experience in AI, ML, and data analytics.">
 
   <!-- Fonts -->
@@ -289,7 +289,7 @@ button:focus-visible,
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: 60px;
-  align-items: start;
+  align-items: center;
 }
 
 .hero__title {
@@ -330,28 +330,46 @@ button:focus-visible,
 }
 
 .hero__visual {
-  aspect-ratio: 1 / 1;
   width: 100%;
-  max-width: 440px;
-  max-height: 440px;
-  justify-self: center;
-  align-self: start;
-  margin-top: 52px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background:
-    radial-gradient(circle at 30% 20%, var(--violet-soft), transparent 60%),
-    radial-gradient(circle at 75% 75%, var(--cyan-soft), transparent 55%),
-    var(--panel);
-  background-image:
-    radial-gradient(circle at 30% 20%, var(--violet-soft), transparent 60%),
-    radial-gradient(circle at 75% 75%, var(--cyan-soft), transparent 55%),
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: auto, auto, 32px 32px, 32px 32px;
-  overflow: hidden;
-  position: relative;
 }
+
+.hero-readout {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 8px 26px 24px;
+}
+.hero-readout__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 18px 0 16px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-readout__live { color: var(--cyan); text-transform: none; letter-spacing: 0; }
+.hero-readout__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+.hero-readout__row span:first-child { color: var(--text-dim); }
+.hero-readout__row span:last-child { font-family: var(--font-mono); text-align: right; }
+.hero-readout__foot { padding-top: 18px; }
+.hero-readout__label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.hero-readout .tag-list { margin-top: 12px; }
 
 .scroll-cue {
   position: absolute;
@@ -794,7 +812,7 @@ button:focus-visible,
 /* ---------- 18. RESPONSIVE ---------- */
 @media (max-width: 980px) {
   .hero__inner { grid-template-columns: 1fr; }
-  .hero__visual { order: -1; max-width: 420px; margin: 0 auto 20px; }
+  .hero__visual { order: -1; max-width: 440px; margin: 0 auto 20px; }
   .about__grid { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .project-grid { grid-template-columns: repeat(2, 1fr); }
@@ -908,7 +926,25 @@ button:focus-visible,
           </div>
         </div>
 
-        <div class="hero__visual reveal" aria-hidden="true"></div>
+        <div class="hero__visual reveal" aria-label="Quick profile summary">
+          <div class="hero-readout">
+            <div class="hero-readout__head">
+              <span>profile.status</span>
+              <span class="hero-readout__live">● active</span>
+            </div>
+            <div class="hero-readout__row"><span>program</span><span>Applied AI Solutions</span></div>
+            <div class="hero-readout__row"><span>institution</span><span>George Brown College</span></div>
+            <div class="hero-readout__row"><span>focus</span><span>ML · Data Analytics</span></div>
+            <div class="hero-readout__row"><span>location</span><span>Toronto, ON</span></div>
+            <div class="hero-readout__row"><span>status</span><span class="text-accent">Open to Co-op</span></div>
+            <div class="hero-readout__foot">
+              <span class="hero-readout__label">core stack</span>
+              <ul class="tag-list">
+                <li>Python</li><li>TensorFlow</li><li>SQL</li><li>Power BI</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
 
       <a href="#about" class="scroll-cue" aria-label="Scroll to About section">
