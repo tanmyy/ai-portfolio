@@ -266,7 +266,7 @@ button:focus-visible,
 /* ---------- 6. HERO ---------- */
 .hero {
   position: relative;
-  padding: 100px 6vw 80px;
+  padding: 40px 6vw 60px;
   max-width: var(--max-width);
   margin: 0 auto;
 }
