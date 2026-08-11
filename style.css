@@ -271,24 +271,22 @@ button:focus-visible,
   margin: 0 auto;
 }
 
+/* Hero positioning fix */
+.hero {
+  padding-top: 20px;
+}
+
 .hero__inner {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 60px;
   align-items: start;
   min-height: 0;
 }
 
-.hero__title {
-  font-size: clamp(2.4rem, 4.6vw, 3.8rem);
-  margin-bottom: 22px;
+.hero__content {
+  margin-top: 0;
 }
 
-.hero__intro {
-  color: var(--text-dim);
-  max-width: 54ch;
-  font-size: 1.06rem;
-  margin-bottom: 34px;
+.hero__title {
+  margin-top: 0;
 }
 
 .hero__actions {
