@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tanmay Kataria — AI &amp; Machine Learning Portfolio</title>
-  <meta name="description" content="Portfolio of Tanmay Kataria, Applied AI Solutions student at George Brown College — projects, skills, and experience in AI, ML, and data analytics.">
+  <title>Tanmay Kataria | AI &amp; ML Portfolio</title>
+  <meta name="description" content="Portfolio of Tanmay Kataria, Applied AI Solutions student at George Brown Polytechnic. Projects, skills, and experience in AI, ML, and data analytics.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,6 +54,8 @@
   --cyan: #F2C94C;
   --cyan-soft: #33290F;
 
+  --header-bg: rgba(24, 24, 26, 0.72);
+
   /* Type */
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -72,6 +74,27 @@
   --transition-med: 0.4s var(--ease);
 }
 
+/* Light theme: swaps the same variable set so every component restyles automatically. */
+[data-theme="light"] {
+  --bg: #F5F5F3;
+  --bg-alt: #EDEDEA;
+  --panel: #FFFFFF;
+  --panel-2: #F2F2EF;
+  --border: rgba(0, 0, 0, 0.09);
+  --border-strong: rgba(0, 0, 0, 0.16);
+
+  --text: #1C1D1F;
+  --text-dim: #55585E;
+  --text-faint: #83868C;
+
+  --violet: #3763D6;
+  --violet-soft: #E6EDFC;
+  --cyan: #B8860B;
+  --cyan-soft: #FBF0D6;
+
+  --header-bg: rgba(245, 245, 243, 0.78);
+}
+
 /* ---------- 2. RESET & BASE ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -88,6 +111,7 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background-color var(--transition-med), color var(--transition-med);
 }
 
 img { max-width: 100%; display: block; }
@@ -145,25 +169,6 @@ button:focus-visible,
   margin-bottom: 12px;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--cyan);
-  border: 1px solid var(--cyan-soft);
-  background: var(--cyan-soft);
-  padding: 7px 14px;
-  border-radius: 30px;
-  margin-bottom: 26px;
-}
-.eyebrow__dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 0 3px var(--cyan-soft);
-}
-
 .tag-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
 .tag-list li {
   font-family: var(--font-mono);
@@ -216,10 +221,11 @@ button:focus-visible,
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(11, 13, 18, 0.72);
+  background: var(--header-bg);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom: 1px solid var(--border);
+  transition: background-color var(--transition-med);
 }
 
 .nav {
@@ -277,10 +283,40 @@ button:focus-visible,
   transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
 
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.theme-toggle {
+  position: relative;
+  width: 40px; height: 40px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition-fast);
+}
+.theme-toggle:hover { border-color: var(--cyan); }
+.theme-toggle__icon {
+  position: absolute;
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+/* Dark mode (default): show the sun icon as the "switch to light" affordance */
+.theme-toggle__icon--sun { opacity: 1; transform: scale(1); }
+.theme-toggle__icon--moon { opacity: 0; transform: scale(0.5); }
+/* Light mode: show the moon icon as the "switch to dark" affordance */
+[data-theme="light"] .theme-toggle__icon--sun { opacity: 0; transform: scale(0.5); }
+[data-theme="light"] .theme-toggle__icon--moon { opacity: 1; transform: scale(1); }
+
 /* ---------- 6. HERO ---------- */
 .hero {
   position: relative;
-  padding: 100px 6vw 80px;
+  padding: 56px 6vw 60px;
   max-width: var(--max-width);
   margin: 0 auto;
 }
@@ -293,22 +329,22 @@ button:focus-visible,
 }
 
 .hero__title {
-  font-size: clamp(2.4rem, 4.6vw, 3.8rem);
-  margin-bottom: 22px;
+  font-size: clamp(2.2rem, 4.2vw, 3.5rem);
+  margin-bottom: 16px;
 }
 
 .hero__intro {
   color: var(--text-dim);
   max-width: 54ch;
-  font-size: 1.06rem;
-  margin-bottom: 34px;
+  font-size: 1.02rem;
+  margin-bottom: 22px;
 }
 
 .hero__actions {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 }
 
 .hero__stats {
@@ -331,45 +367,25 @@ button:focus-visible,
 
 .hero__visual {
   width: 100%;
+  max-width: 340px;
+  justify-self: center;
 }
 
-.hero-readout {
-  background: var(--panel);
-  border: 1px solid var(--border);
+.photo-frame {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  border: 1px dashed var(--border-strong);
   border-radius: var(--radius-lg);
-  padding: 8px 26px 24px;
-}
-.hero-readout__head {
+  background: var(--panel);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+}
+.photo-frame__label {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   color: var(--text-faint);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 18px 0 16px;
-  border-bottom: 1px solid var(--border);
 }
-.hero-readout__live { color: var(--cyan); text-transform: none; letter-spacing: 0; }
-.hero-readout__row {
-  display: flex;
-  justify-content: space-between;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.9rem;
-}
-.hero-readout__row span:first-child { color: var(--text-dim); }
-.hero-readout__row span:last-child { font-family: var(--font-mono); text-align: right; }
-.hero-readout__foot { padding-top: 18px; }
-.hero-readout__label {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-faint);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.hero-readout .tag-list { margin-top: 12px; }
 
 .scroll-cue {
   position: absolute;
@@ -408,6 +424,7 @@ button:focus-visible,
   border-bottom: 1px solid var(--border);
 }
 .section--alt > * { max-width: var(--max-width); margin-left: auto; margin-right: auto; }
+.section--alt .section__head { margin-left: 0; }
 
 .section__head { margin-bottom: 56px; max-width: 640px; }
 .section__title { font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 12px; }
@@ -513,8 +530,9 @@ button:focus-visible,
 .project-card:hover { transform: translateY(-6px); border-color: var(--border-strong); }
 
 .project-card__image {
-  aspect-ratio: 16 / 10;
-  background: linear-gradient(140deg, var(--violet-soft), var(--cyan-soft));
+  aspect-ratio: 1 / 1;
+  background: var(--panel-2);
+  border-bottom: 1px dashed var(--border-strong);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -610,7 +628,16 @@ button:focus-visible,
 
 .modal__image {
   aspect-ratio: 16/8;
-  background: linear-gradient(140deg, var(--violet-soft), var(--cyan-soft));
+  background: var(--panel-2);
+  border-bottom: 1px dashed var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal__image-label {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-faint);
 }
 
 .modal__body { padding: 30px 32px 34px; }
@@ -642,49 +669,35 @@ button:focus-visible,
 
 .modal__actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
-/* ---------- 11. EXPERIENCE TIMELINE ---------- */
-.timeline {
+/* ---------- 11. EXPERIENCE LIST ---------- */
+.experience-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  position: relative;
 }
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 130px;
-  top: 8px; bottom: 8px;
-  width: 1px;
-  background: var(--border-strong);
-}
-.timeline__item {
+.experience-row {
   display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: 30px;
-  padding: 24px 0;
+  grid-template-columns: 50px 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 22px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
 }
-.timeline__marker { position: relative; text-align: right; padding-right: 30px; }
-.timeline__marker::after {
-  content: '';
-  position: absolute;
-  right: -5px; top: 4px;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 0 4px var(--cyan-soft);
-}
-.timeline__date { font-size: 0.8rem; color: var(--text-dim); }
+.experience-row:hover { background: var(--panel); border-color: var(--border); }
+.experience-row + .experience-row { border-top: 1px solid var(--border); }
 
-.timeline__card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 24px 26px;
-  transition: border-color var(--transition-fast);
+.experience-row__num { color: var(--text-faint); font-size: 0.85rem; }
+
+.experience-row__top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
 }
-.timeline__card:hover { border-color: var(--border-strong); }
-.timeline__type {
-  display: inline-block;
+.experience-row__top h3 { font-size: 1.05rem; }
+.experience-row__type {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   text-transform: uppercase;
@@ -692,11 +705,9 @@ button:focus-visible,
   background: var(--violet-soft);
   padding: 4px 10px;
   border-radius: 20px;
-  margin-bottom: 10px;
 }
-.timeline__card h3 { font-size: 1.08rem; margin-bottom: 4px; }
-.timeline__role { color: var(--text-faint); font-size: 0.85rem; margin-bottom: 10px; }
-.timeline__card p:last-child { color: var(--text-dim); font-size: 0.92rem; }
+.experience-row__info p { color: var(--text-dim); font-size: 0.9rem; }
+.experience-row__date { color: var(--text-faint); font-size: 0.82rem; white-space: nowrap; }
 
 /* ---------- 12. EDUCATION ---------- */
 .edu-card {
@@ -812,7 +823,7 @@ button:focus-visible,
 /* ---------- 18. RESPONSIVE ---------- */
 @media (max-width: 980px) {
   .hero__inner { grid-template-columns: 1fr; }
-  .hero__visual { order: -1; max-width: 440px; margin: 0 auto 20px; }
+  .hero__visual { order: -1; max-width: 260px; margin: 0 auto 30px; }
   .about__grid { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .project-grid { grid-template-columns: repeat(2, 1fr); }
@@ -839,10 +850,8 @@ button:focus-visible,
   .nav__toggle { display: flex; }
   .nav__resume { display: none; }
 
-  .timeline::before { left: 8px; }
-  .timeline__item { grid-template-columns: 1fr; gap: 10px; }
-  .timeline__marker { text-align: left; padding-left: 26px; padding-right: 0; }
-  .timeline__marker::after { left: 3px; right: auto; }
+  .experience-row { grid-template-columns: 1fr; gap: 6px; }
+  .experience-row__date { order: -1; }
 }
 
 @media (max-width: 640px) {
@@ -869,6 +878,15 @@ button:focus-visible,
 }
 
 </style>
+
+  <!-- Inline script sets the theme before first paint, avoiding a flash of the wrong theme -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      var theme = saved || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 </head>
 <body>
 
@@ -894,7 +912,13 @@ button:focus-visible,
         <li><a href="#contact" class="nav__link">Contact</a></li>
       </ul>
 
-      <a href="#" class="btn btn--pill nav__resume" download>Resume</a>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark mode">
+          <span class="theme-toggle__icon theme-toggle__icon--sun">&#9728;</span>
+          <span class="theme-toggle__icon theme-toggle__icon--moon">&#9789;</span>
+        </button>
+        <a href="#" class="btn btn--pill nav__resume" download>Resume</a>
+      </div>
     </nav>
   </header>
 
@@ -904,14 +928,13 @@ button:focus-visible,
     <section class="hero" id="home">
       <div class="hero__inner">
         <div class="hero__content reveal">
-          <p class="eyebrow"><span class="eyebrow__dot"></span> Applied AI Solutions · George Brown College</p>
           <h1 class="hero__title">
             Building intelligent systems<br>
             from <span class="text-gradient">data to deployment.</span>
           </h1>
           <p class="hero__intro">
             I'm Tanmay Kataria, an aspiring AI/ML engineer studying Applied AI Solutions.
-            I design and build practical machine learning and data-driven applications —
+            I design and build practical machine learning and data driven applications,
             grounded in real problems, not just notebooks.
           </p>
           <div class="hero__actions">
@@ -926,23 +949,10 @@ button:focus-visible,
           </div>
         </div>
 
-        <div class="hero__visual reveal" aria-label="Quick profile summary">
-          <div class="hero-readout">
-            <div class="hero-readout__head">
-              <span>profile.status</span>
-              <span class="hero-readout__live">● active</span>
-            </div>
-            <div class="hero-readout__row"><span>program</span><span>Applied AI Solutions</span></div>
-            <div class="hero-readout__row"><span>institution</span><span>George Brown College</span></div>
-            <div class="hero-readout__row"><span>focus</span><span>ML · Data Analytics</span></div>
-            <div class="hero-readout__row"><span>location</span><span>Toronto, ON</span></div>
-            <div class="hero-readout__row"><span>status</span><span class="text-accent">Open to Co-op</span></div>
-            <div class="hero-readout__foot">
-              <span class="hero-readout__label">core stack</span>
-              <ul class="tag-list">
-                <li>Python</li><li>TensorFlow</li><li>SQL</li><li>Power BI</li>
-              </ul>
-            </div>
+        <!-- Headshot placeholder: swap the contents of .photo-frame for a real <img> once you have one -->
+        <div class="hero__visual reveal">
+          <div class="photo-frame">
+            <span class="photo-frame__label">Add photo</span>
           </div>
         </div>
       </div>
@@ -955,7 +965,7 @@ button:focus-visible,
     <!-- ============== ABOUT ============== -->
     <section class="section" id="about">
       <div class="section__head reveal">
-        <p class="kicker">01 — About</p>
+        <p class="kicker">01 / About</p>
         <h2 class="section__title">Professional Summary</h2>
       </div>
 
@@ -963,7 +973,7 @@ button:focus-visible,
         <div class="about__panel reveal">
           <div class="readout">
             <div class="readout__row"><span>Program</span><span>Applied AI Solutions</span></div>
-            <div class="readout__row"><span>Institution</span><span>George Brown College</span></div>
+            <div class="readout__row"><span>Institution</span><span>George Brown Polytechnic</span></div>
             <div class="readout__row"><span>Location</span><span>Toronto, ON</span></div>
             <div class="readout__row"><span>Focus</span><span>ML · Data Analytics</span></div>
             <div class="readout__row"><span>Status</span><span class="text-accent">Open to Co-op</span></div>
@@ -973,22 +983,22 @@ button:focus-visible,
         <div class="about__content reveal">
           <p>
             <!-- Replace with your own summary -->
-            I'm a student in the Applied AI Solutions program at George Brown College,
+            I'm a student in the Applied AI Solutions program at George Brown Polytechnic,
             focused on building practical machine learning and data analytics solutions.
             My background combines hands-on project work with a growing foundation in
-            Python, statistical modeling, and applied ML — I care about models that solve
+            Python, statistical modeling, and applied ML. I care about models that solve
             a real problem, not just ones that score well on a benchmark.
           </p>
           <p>
             <!-- Career objective -->
             <strong>Career objective:</strong> to grow into a machine learning or data
-            analytics role where I can work on production-facing AI systems — from data
-            pipelines through model deployment — alongside a team that values clear
+            analytics role where I can work on production-facing AI systems, from data
+            pipelines through model deployment, alongside a team that values clear
             thinking as much as clean code.
           </p>
           <p class="about__edit-note">
-            Edit this section with your real summary and objective once finalized —
-            keep it to 2–3 tight paragraphs recruiters can scan in under 20 seconds.
+            Edit this section with your real summary and objective once finalized.
+            Keep it to two or three tight paragraphs recruiters can scan in under 20 seconds.
           </p>
         </div>
       </div>
@@ -997,7 +1007,7 @@ button:focus-visible,
     <!-- ============== SKILLS ============== -->
     <section class="section section--alt" id="skills">
       <div class="section__head reveal">
-        <p class="kicker">02 — Technical Skills</p>
+        <p class="kicker">02 / Technical Skills</p>
         <h2 class="section__title">What I Work With</h2>
         <p class="section__intro">Grouped by category so recruiters and reviewers can scan quickly.</p>
       </div>
@@ -1066,7 +1076,7 @@ button:focus-visible,
     <!-- ============== PROJECTS ============== -->
     <section class="section" id="projects">
       <div class="section__head reveal">
-        <p class="kicker">03 — Featured Projects</p>
+        <p class="kicker">03 / Featured Projects</p>
         <h2 class="section__title">Selected Work</h2>
         <p class="section__intro">Filter by category, or open a project for the full case study.</p>
       </div>
@@ -1090,7 +1100,9 @@ button:focus-visible,
       <div class="modal__backdrop" data-close-modal></div>
       <div class="modal__panel">
         <button class="modal__close" data-close-modal aria-label="Close project details">&times;</button>
-        <div class="modal__image" id="modalImage" aria-hidden="true"></div>
+        <div class="modal__image" id="modalImage" aria-hidden="true">
+          <span class="modal__image-label">Add project photo</span>
+        </div>
         <div class="modal__body">
           <span class="modal__category" id="modalCategory"></span>
           <h3 id="modalTitle"></h3>
@@ -1116,48 +1128,49 @@ button:focus-visible,
     </div>
 
     <!-- ============== EXPERIENCE ============== -->
+    <!-- Kept intentionally short and scannable, same list treatment as Selected Work. -->
     <section class="section section--alt" id="experience">
       <div class="section__head reveal">
-        <p class="kicker">04 — Experience</p>
+        <p class="kicker">04 / Experience</p>
         <h2 class="section__title">Where I've Worked</h2>
       </div>
 
-      <div class="timeline">
+      <div class="experience-list reveal">
 
-        <div class="timeline__item reveal">
-          <div class="timeline__marker">
-            <span class="timeline__date mono">2025 — Present</span>
+        <div class="experience-row">
+          <span class="experience-row__num mono">01</span>
+          <div class="experience-row__info">
+            <div class="experience-row__top">
+              <h3>[ Company Name ]</h3>
+              <span class="experience-row__type">Internship</span>
+            </div>
+            <p>AI / Data Intern. Replace with a one-line summary of your responsibilities and impact.</p>
           </div>
-          <div class="timeline__card">
-            <span class="timeline__type">Internship</span>
-            <h3>[ Company Name ]</h3>
-            <p class="timeline__role">AI / Data Intern</p>
-            <p>Replace with a short summary of your responsibilities and impact — 2–3 bullet points work well here.</p>
-          </div>
+          <span class="experience-row__date mono">2025 to Present</span>
         </div>
 
-        <div class="timeline__item reveal">
-          <div class="timeline__marker">
-            <span class="timeline__date mono">2024 — 2025</span>
+        <div class="experience-row">
+          <span class="experience-row__num mono">02</span>
+          <div class="experience-row__info">
+            <div class="experience-row__top">
+              <h3>Independent Client Work</h3>
+              <span class="experience-row__type">Freelance</span>
+            </div>
+            <p>Applied AI tools and data driven workflows across freelance client engagements.</p>
           </div>
-          <div class="timeline__card">
-            <span class="timeline__type">Freelance</span>
-            <h3>Independent Client Work</h3>
-            <p class="timeline__role">Data &amp; Content Projects</p>
-            <p>Applied AI tools and data-driven workflows across freelance client engagements — add specifics once finalized.</p>
-          </div>
+          <span class="experience-row__date mono">2024 to 2025</span>
         </div>
 
-        <div class="timeline__item reveal">
-          <div class="timeline__marker">
-            <span class="timeline__date mono">2024</span>
+        <div class="experience-row">
+          <span class="experience-row__num mono">03</span>
+          <div class="experience-row__info">
+            <div class="experience-row__top">
+              <h3>[ Organization Name ]</h3>
+              <span class="experience-row__type">Volunteer</span>
+            </div>
+            <p>Replace with a one-line summary of the volunteer role and technical contribution.</p>
           </div>
-          <div class="timeline__card">
-            <span class="timeline__type">Volunteer</span>
-            <h3>[ Organization Name ]</h3>
-            <p class="timeline__role">Volunteer Role</p>
-            <p>Add a short description of the volunteer role and any relevant technical contribution.</p>
-          </div>
+          <span class="experience-row__date mono">2024</span>
         </div>
 
       </div>
@@ -1166,7 +1179,7 @@ button:focus-visible,
     <!-- ============== EDUCATION ============== -->
     <section class="section" id="education">
       <div class="section__head reveal">
-        <p class="kicker">05 — Education</p>
+        <p class="kicker">05 / Education</p>
         <h2 class="section__title">Academic Background</h2>
       </div>
 
@@ -1174,9 +1187,9 @@ button:focus-visible,
         <div class="edu-card__head">
           <div>
             <h3>Applied AI Solutions</h3>
-            <p class="edu-card__school">George Brown College — Toronto, ON</p>
+            <p class="edu-card__school">George Brown Polytechnic, Toronto, ON</p>
           </div>
-          <span class="mono edu-card__dates">2025 — 2026</span>
+          <span class="mono edu-card__dates">2025 to 2026</span>
         </div>
         <p>
           Graduate certificate program focused on applied machine learning, data
@@ -1194,7 +1207,7 @@ button:focus-visible,
     <!-- ============== CERTIFICATIONS ============== -->
     <section class="section section--alt" id="certifications">
       <div class="section__head reveal">
-        <p class="kicker">06 — Certifications</p>
+        <p class="kicker">06 / Certifications</p>
         <h2 class="section__title">Credentials</h2>
       </div>
 
@@ -1203,19 +1216,19 @@ button:focus-visible,
           <h3>[ Certification Name ]</h3>
           <p class="cert-card__issuer">Issuing Organization</p>
           <span class="mono cert-card__date">Add date</span>
-          <a href="#" class="cert-card__link">Verify credential →</a>
+          <a href="#" class="cert-card__link">Verify credential &rarr;</a>
         </div>
         <div class="cert-card reveal">
           <h3>[ Certification Name ]</h3>
           <p class="cert-card__issuer">Issuing Organization</p>
           <span class="mono cert-card__date">Add date</span>
-          <a href="#" class="cert-card__link">Verify credential →</a>
+          <a href="#" class="cert-card__link">Verify credential &rarr;</a>
         </div>
         <div class="cert-card reveal">
           <h3>[ Certification Name ]</h3>
           <p class="cert-card__issuer">Issuing Organization</p>
           <span class="mono cert-card__date">Add date</span>
-          <a href="#" class="cert-card__link">Verify credential →</a>
+          <a href="#" class="cert-card__link">Verify credential &rarr;</a>
         </div>
       </div>
     </section>
@@ -1224,23 +1237,23 @@ button:focus-visible,
     <section class="section" id="resume">
       <div class="resume-panel reveal">
         <div>
-          <p class="kicker">07 — Resume</p>
+          <p class="kicker">07 / Resume</p>
           <h2 class="section__title">Get the Full Picture</h2>
           <p class="section__intro">Download my resume for full details on experience, skills, and education.</p>
         </div>
-        <a href="#" class="btn btn--primary btn--lg" download>Download Resume ↓</a>
+        <a href="#" class="btn btn--primary btn--lg" download>Download Resume &darr;</a>
       </div>
     </section>
 
     <!-- ============== CONTACT ============== -->
     <section class="section" id="contact">
       <div class="contact-panel reveal">
-        <p class="kicker">08 — Contact</p>
+        <p class="kicker">08 / Contact</p>
         <h2 class="section__title">Let's Connect</h2>
         <p class="section__intro">Open to co-op placements, internships, and entry-level AI/ML roles.</p>
 
         <div class="contact-links">
-          <a href="mailto:tanmaykataria18@gmail.com" class="btn btn--primary">tanmaykataria18@gmail.com</a>
+          <a href="mailto:tanmay.kataria@georgebrown.ca" class="btn btn--primary">tanmay.kataria@georgebrown.ca</a>
           <a href="https://www.linkedin.com/in/tanmaykataria/" class="btn btn--ghost" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://github.com/" class="btn btn--ghost" target="_blank" rel="noopener">GitHub</a>
         </div>
@@ -1251,18 +1264,18 @@ button:focus-visible,
 
   <!-- ============== FOOTER ============== -->
   <footer class="site-footer">
-    <p>Tanmay Kataria · Applied AI Solutions, George Brown College · <span id="footerYear"></span></p>
+    <p>Tanmay Kataria · Applied AI Solutions, George Brown Polytechnic · <span id="footerYear"></span></p>
     <div class="site-footer__socials">
       <a href="https://www.linkedin.com/in/tanmaykataria/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
     </div>
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
   </footer>
 
   <script>
 /* =========================================================
    script.js
-   Vanilla JS only — no frameworks or libraries.
+   Vanilla JS only. No frameworks or libraries.
    Organized into small, single-purpose modules that each
    run once on DOMContentLoaded.
    ========================================================= */
@@ -1273,6 +1286,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initActiveNavHighlight();
   initProjects();      // renders cards + wires filter + modal
   initBackToTop();
+  initThemeToggle();
   document.getElementById('footerYear').textContent = new Date().getFullYear();
 });
 
@@ -1351,7 +1365,7 @@ function initActiveNavHighlight() {
 
 /* ---------------------------------------------------------
    4. PROJECTS: data, render, filter, modal
-   Edit the projectData array below to add/replace projects —
+   Edit the projectData array below to add/replace projects.
    the grid and modal are generated from this single source.
 --------------------------------------------------------- */
 const projectData = [
@@ -1406,7 +1420,7 @@ function renderProjects(list) {
   const grid = document.getElementById('projectGrid');
   grid.innerHTML = list.map(project => `
     <article class="project-card reveal is-visible" data-category="${project.category}">
-      <div class="project-card__image">${project.title.replace('[ ', '').replace(' ]', '')}</div>
+      <div class="project-card__image">Add project photo</div>
       <div class="project-card__body">
         <span class="project-card__category">${project.categoryLabel}</span>
         <h3>${project.title}</h3>
@@ -1416,7 +1430,7 @@ function renderProjects(list) {
             <a class="icon-link" href="${project.github}" target="_blank" rel="noopener">GitHub</a>
             <a class="icon-link" href="${project.demo}" target="_blank" rel="noopener">Live Demo</a>
           </div>
-          <button class="project-card__details-btn" data-project-id="${project.id}">View Details →</button>
+          <button class="project-card__details-btn" data-project-id="${project.id}">View Details &rarr;</button>
         </div>
       </div>
     </article>
@@ -1459,7 +1473,6 @@ function openProjectModal(id) {
   document.getElementById('modalRole').textContent = project.role;
   document.getElementById('modalGithub').href = project.github;
   document.getElementById('modalDemo').href = project.demo;
-  document.getElementById('modalImage').textContent = '';
 
   const stackList = document.getElementById('modalStack');
   stackList.innerHTML = project.stack.map(tech => `<li>${tech}</li>`).join('');
@@ -1489,7 +1502,25 @@ function wireModal() {
 }
 
 /* ---------------------------------------------------------
-   5. BACK TO TOP BUTTON
+   7. LIGHT / DARK THEME TOGGLE
+   The initial theme is set by an inline script in <head> to
+   avoid a flash of the wrong theme. This just wires the button.
+--------------------------------------------------------- */
+function initThemeToggle() {
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const root = document.documentElement;
+    const current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    const next = current === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+}
+
+/* ---------------------------------------------------------
+   6. BACK TO TOP BUTTON
 --------------------------------------------------------- */
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
