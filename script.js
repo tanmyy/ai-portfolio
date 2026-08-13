@@ -96,37 +96,37 @@ function initActiveNavHighlight() {
 const projectData = [
   {
     id: 'proj-1',
-    title: '[ Predictive Model Project ]',
+    title: 'Predicting Adolescent Depression from Social Media & Lifestyle Patterns',
     category: 'ml',
     categoryLabel: 'Machine Learning',
-    description: 'A short one-line summary of the model and the problem it solves.',
-    fullDescription: 'Replace with a full case-study description: the problem, your approach, the dataset used, and the outcome or accuracy achieved.',
-    role: 'Model design, training, and evaluation.',
-    stack: ['Python', 'Scikit-learn', 'Pandas'],
+    description: 'Classification models predicting adolescent depression risk from lifestyle and social media behavior data.',
+    fullDescription: 'Built and compared Random Forest, Logistic Regression, and Decision Tree classifiers on an imbalanced dataset (97.5% vs 2.5% class split) to flag depression risk from sleep, stress, anxiety, and screen-time features. Applied SMOTE to the training set only, tuned hyperparameters with GridSearchCV, and optimized for F2-score and recall rather than accuracy given the imbalance. The Decision Tree model caught every depressed case in the test set (recall of 1.0), with sleep hours, stress level, and anxiety level emerging as the strongest predictors.',
+    role: 'Built and evaluated the classification models, handled class-imbalance correction with SMOTE, and ran hyperparameter tuning.',
+    stack: ['Python', 'Scikit-learn', 'Random Forest', 'Logistic Regression', 'Decision Tree', 'SMOTE'],
     github: '#',
     demo: '#'
   },
   {
     id: 'proj-2',
-    title: '[ Data Analytics Dashboard ]',
+    title: 'Sales Data ETL & Reporting Pipeline',
     category: 'analytics',
     categoryLabel: 'Data Analytics',
-    description: 'A short one-line summary of the dataset and the insight it surfaces.',
-    fullDescription: 'Replace with a full case-study description: the business question, the analysis process, and the key findings.',
-    role: 'Data cleaning, analysis, and dashboard build.',
-    stack: ['Python', 'Pandas', 'Power BI'],
+    description: 'Group ETL pipeline that cleaned, normalized, and loaded retail sales data into a 3NF MySQL database.',
+    fullDescription: 'A six-person group project that extracted Orders, People, and Returns data from an Excel workbook, ran data-quality checks, cleaned and normalized the dataset into Third Normal Form across ten relational tables, and loaded it into MySQL with Python, Pandas, SQLAlchemy, and PyMySQL. Validated the load with row-count, null, and foreign-key checks, then built operational and executive reporting tables exported to CSV and PDF for business decision-making.',
+    role: 'Contributed to data cleaning, transformation, and MySQL loading scripts as part of a six-person team.',
+    stack: ['Python', 'Pandas', 'MySQL', 'SQLAlchemy'],
     github: '#',
     demo: '#'
   },
   {
     id: 'proj-3',
-    title: '[ Visualization Project ]',
+    title: '2025 Investment Shortlist, Tableau Story',
     category: 'viz',
     categoryLabel: 'Visualization',
-    description: 'A short one-line summary of what the visualization communicates.',
-    fullDescription: 'Replace with a full case-study description: what the visualization shows and why it matters to the audience.',
-    role: 'Visualization design and implementation.',
-    stack: ['Python', 'Matplotlib', 'Seaborn'],
+    description: 'An eight-visualization Tableau Story screening 60 companies into a defensible 2025 investment shortlist.',
+    fullDescription: 'A group project combining fundamentals, market performance, risk, liquidity, and data quality into a transparent multi-criteria screening framework for a 60-company sample. The Tableau Story moves from sector context to company-level evidence to a preference-sensitive shortlist, using forecasting, a risk-return matrix, company clustering, what-if scenario weighting, and a liquidity Pareto analysis. Found a positive but outlier-sensitive relationship between free cash flow growth and annual return (Pearson r of 0.698, falling to 0.399 once the influential outlier was removed).',
+    role: 'Contributed to the fundamentals-return correlation analysis and the risk-return and liquidity visualizations as part of a six-person team.',
+    stack: ['Tableau', 'Statistical Analysis', 'Excel'],
     github: '#',
     demo: '#'
   }
@@ -145,7 +145,7 @@ function renderProjects(list) {
   const grid = document.getElementById('projectGrid');
   grid.innerHTML = list.map(project => `
     <article class="project-card reveal is-visible" data-category="${project.category}">
-      <div class="project-card__image">Add project photo</div>
+      <div class="project-card__image">Photo</div>
       <div class="project-card__body">
         <span class="project-card__category">${project.categoryLabel}</span>
         <h3>${project.title}</h3>
