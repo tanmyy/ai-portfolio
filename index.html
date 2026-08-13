@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tanmay Kataria | AI &amp; ML Portfolio</title>
-  <meta name="description" content="Portfolio of Tanmay Kataria, Applied AI Solutions student at George Brown Polytechnic. Projects, skills, and experience in AI, ML, and data analytics.">
+  <title>Tanmay Kataria | AI &amp; Machine Learning Portfolio</title>
+  <meta name="description" content="Portfolio of Tanmay Kataria, Applied AI Solutions Development student at George Brown Polytechnic. Projects, skills, and experience in AI, ML, and data analytics.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -180,13 +180,6 @@ button:focus-visible,
   white-space: nowrap;
 }
 
-.optional-flag {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--text-faint);
-  font-weight: 400;
-}
-
 /* ---------- 4. BUTTONS ---------- */
 .btn {
   display: inline-flex;
@@ -226,12 +219,13 @@ button:focus-visible,
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom: 1px solid var(--border);
   transition: background-color var(--transition-med);
+  padding: 0 6vw;
 }
 
 .nav {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 18px 6vw;
+  padding: 18px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -317,11 +311,11 @@ button:focus-visible,
 .hero {
   position: relative;
   padding: 56px 6vw 60px;
-  max-width: var(--max-width);
-  margin: 0 auto;
 }
 
 .hero__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: 60px;
@@ -414,19 +408,19 @@ button:focus-visible,
 /* ---------- 7. SECTION SHELL ---------- */
 .section {
   padding: var(--section-pad-y) 6vw;
-  max-width: var(--max-width);
-  margin: 0 auto;
 }
 .section--alt {
-  max-width: none;
   background: var(--bg-alt);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
-.section--alt > * { max-width: var(--max-width); margin-left: auto; margin-right: auto; }
-.section--alt .section__head { margin-left: 0; }
 
-.section__head { margin-bottom: 56px; max-width: 640px; }
+/* Every direct child of a section is capped at the same max width and centered,
+   so content lines up identically whether the section has an alt background or not. */
+.section > * { max-width: var(--max-width); margin-left: auto; margin-right: auto; }
+
+/* Section headers sit narrower than the full content width, left-aligned within it. */
+.section__head { margin-bottom: 56px; max-width: 640px; margin-left: 0; }
 .section__title { font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 12px; }
 .section__intro { color: var(--text-dim); }
 
@@ -457,13 +451,6 @@ button:focus-visible,
 
 .about__content p { color: var(--text-dim); margin-bottom: 18px; }
 .about__content strong { color: var(--text); }
-.about__edit-note {
-  font-size: 0.85rem;
-  border: 1px dashed var(--border-strong);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  color: var(--text-faint);
-}
 
 /* ---------- 9. SKILLS ---------- */
 .skills-grid {
@@ -710,20 +697,24 @@ button:focus-visible,
 .experience-row__date { color: var(--text-faint); font-size: 0.82rem; white-space: nowrap; }
 
 /* ---------- 12. EDUCATION ---------- */
+.edu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .edu-card {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 32px;
-  max-width: 760px;
 }
 .edu-card__head {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  margin-bottom: 16px;
 }
+.edu-card__head:not(:only-child) { margin-bottom: 16px; }
 .edu-card__school { color: var(--text-dim); font-size: 0.92rem; margin-top: 4px; }
 .edu-card__dates { color: var(--cyan); font-size: 0.82rem; white-space: nowrap; }
 .edu-card > p { color: var(--text-dim); }
@@ -731,7 +722,7 @@ button:focus-visible,
 /* ---------- 13. CERTIFICATIONS ---------- */
 .cert-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 .cert-card {
@@ -827,7 +818,6 @@ button:focus-visible,
   .about__grid { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .project-grid { grid-template-columns: repeat(2, 1fr); }
-  .cert-grid { grid-template-columns: repeat(2, 1fr); }
   .modal__meta { grid-template-columns: 1fr; }
 }
 
@@ -917,7 +907,7 @@ button:focus-visible,
           <span class="theme-toggle__icon theme-toggle__icon--sun">&#9728;</span>
           <span class="theme-toggle__icon theme-toggle__icon--moon">&#9789;</span>
         </button>
-        <a href="#" class="btn btn--pill nav__resume" download>Resume</a>
+        <a href="assets/resume.pdf" class="btn btn--pill nav__resume" download>Resume</a>
       </div>
     </nav>
   </header>
@@ -933,26 +923,25 @@ button:focus-visible,
             from <span class="text-gradient">data to deployment.</span>
           </h1>
           <p class="hero__intro">
-            I'm Tanmay Kataria, an aspiring AI/ML engineer studying Applied AI Solutions.
-            I design and build practical machine learning and data driven applications,
-            grounded in real problems, not just notebooks.
+            I'm Tanmay Kataria, a postgraduate student in Applied A.I. Solutions Development
+            at George Brown Polytechnic. I design and build practical machine learning and
+            data driven applications, grounded in real problems, not just notebooks.
           </p>
           <div class="hero__actions">
             <a href="#projects" class="btn btn--primary">View Projects</a>
-            <a href="#" class="btn btn--ghost" download>Download Resume</a>
+            <a href="assets/resume.pdf" class="btn btn--ghost" download>Download Resume</a>
           </div>
 
           <div class="hero__stats" aria-label="Quick facts">
-            <div class="hero__stat"><span class="hero__stat-num">3+</span><span class="hero__stat-label">AI/ML projects</span></div>
-            <div class="hero__stat"><span class="hero__stat-num">2026</span><span class="hero__stat-label">expected grad</span></div>
+            <div class="hero__stat"><span class="hero__stat-num">3</span><span class="hero__stat-label">AI/ML projects</span></div>
+            <div class="hero__stat"><span class="hero__stat-num">2027</span><span class="hero__stat-label">expected grad</span></div>
             <div class="hero__stat"><span class="hero__stat-num">Open</span><span class="hero__stat-label">to co-op roles</span></div>
           </div>
         </div>
 
-        <!-- Headshot placeholder: swap the contents of .photo-frame for a real <img> once you have one -->
         <div class="hero__visual reveal">
           <div class="photo-frame">
-            <span class="photo-frame__label">Add photo</span>
+            <span class="photo-frame__label">Photo</span>
           </div>
         </div>
       </div>
@@ -972,7 +961,7 @@ button:focus-visible,
       <div class="about__grid">
         <div class="about__panel reveal">
           <div class="readout">
-            <div class="readout__row"><span>Program</span><span>Applied AI Solutions</span></div>
+            <div class="readout__row"><span>Program</span><span>Applied A.I. Solutions Dev.</span></div>
             <div class="readout__row"><span>Institution</span><span>George Brown Polytechnic</span></div>
             <div class="readout__row"><span>Location</span><span>Toronto, ON</span></div>
             <div class="readout__row"><span>Focus</span><span>ML · Data Analytics</span></div>
@@ -982,23 +971,17 @@ button:focus-visible,
 
         <div class="about__content reveal">
           <p>
-            <!-- Replace with your own summary -->
-            I'm a student in the Applied AI Solutions program at George Brown Polytechnic,
-            focused on building practical machine learning and data analytics solutions.
-            My background combines hands-on project work with a growing foundation in
-            Python, statistical modeling, and applied ML. I care about models that solve
-            a real problem, not just ones that score well on a benchmark.
+            I'm a postgraduate student in the Applied A.I. Solutions Development program at
+            George Brown Polytechnic, with a foundation in machine learning, Python, SQL, and
+            data analysis. I've built classification and clustering models with Scikit-learn,
+            developed NLP projects using TF-IDF, Bag of Words, and Word2Vec, applied computer
+            vision techniques with OpenCV, and worked on audio processing and Tableau based
+            ETL projects.
           </p>
           <p>
-            <!-- Career objective -->
-            <strong>Career objective:</strong> to grow into a machine learning or data
-            analytics role where I can work on production-facing AI systems, from data
-            pipelines through model deployment, alongside a team that values clear
-            thinking as much as clean code.
-          </p>
-          <p class="about__edit-note">
-            Edit this section with your real summary and objective once finalized.
-            Keep it to two or three tight paragraphs recruiters can scan in under 20 seconds.
+            <strong>Career objective:</strong> I'm seeking a Machine Learning or Artificial
+            Intelligence co-op where I can contribute to AI research and product development
+            while expanding my technical expertise in a collaborative, fast paced environment.
           </p>
         </div>
       </div>
@@ -1007,8 +990,8 @@ button:focus-visible,
     <!-- ============== SKILLS ============== -->
     <section class="section section--alt" id="skills">
       <div class="section__head reveal">
-        <p class="kicker">02 / Technical Skills</p>
-        <h2 class="section__title">What I Work With</h2>
+        <p class="kicker">02 / Skills</p>
+        <h2 class="section__title">Technical Skills</h2>
         <p class="section__intro">Grouped by category so recruiters and reviewers can scan quickly.</p>
       </div>
 
@@ -1018,15 +1001,16 @@ button:focus-visible,
           <span class="skill-panel__tag">languages</span>
           <h3>Programming Languages</h3>
           <ul class="tag-list">
-            <li>Python</li><li>SQL</li><li>JavaScript</li><li>Java</li>
+            <li>Python</li><li>SQL</li>
           </ul>
         </div>
 
         <div class="skill-panel reveal">
           <span class="skill-panel__tag">machine learning</span>
-          <h3>Machine Learning</h3>
+          <h3>Machine Learning &amp; AI</h3>
           <ul class="tag-list">
-            <li>Scikit-learn</li><li>TensorFlow</li><li>PyTorch</li><li>Pandas</li>
+            <li>Scikit-learn</li><li>NLP</li><li>Computer Vision</li>
+            <li>Image Processing</li><li>Audio Processing</li><li>Model Evaluation</li>
           </ul>
         </div>
 
@@ -1034,7 +1018,7 @@ button:focus-visible,
           <span class="skill-panel__tag">analytics</span>
           <h3>Data Analytics</h3>
           <ul class="tag-list">
-            <li>NumPy</li><li>Pandas</li><li>Statistical Analysis</li><li>A/B Testing</li>
+            <li>Pandas</li><li>NumPy</li><li>TabPy</li>
           </ul>
         </div>
 
@@ -1042,7 +1026,7 @@ button:focus-visible,
           <span class="skill-panel__tag">visualization</span>
           <h3>Visualization</h3>
           <ul class="tag-list">
-            <li>Power BI</li><li>Matplotlib</li><li>Seaborn</li><li>Tableau</li>
+            <li>Tableau</li><li>Matplotlib</li><li>Seaborn</li>
           </ul>
         </div>
 
@@ -1050,7 +1034,7 @@ button:focus-visible,
           <span class="skill-panel__tag">databases</span>
           <h3>Databases</h3>
           <ul class="tag-list">
-            <li>MySQL</li><li>PostgreSQL</li><li>MongoDB</li>
+            <li>MySQL</li>
           </ul>
         </div>
 
@@ -1058,15 +1042,7 @@ button:focus-visible,
           <span class="skill-panel__tag">tools</span>
           <h3>Tools</h3>
           <ul class="tag-list">
-            <li>Git / GitHub</li><li>Jupyter</li><li>VS Code</li><li>Docker</li>
-          </ul>
-        </div>
-
-        <div class="skill-panel reveal">
-          <span class="skill-panel__tag">cloud</span>
-          <h3>Cloud <span class="optional-flag">(confirm)</span></h3>
-          <ul class="tag-list">
-            <li>Azure</li><li>AWS</li>
+            <li>Jupyter Notebook</li><li>Git / GitHub</li>
           </ul>
         </div>
 
@@ -1101,7 +1077,7 @@ button:focus-visible,
       <div class="modal__panel">
         <button class="modal__close" data-close-modal aria-label="Close project details">&times;</button>
         <div class="modal__image" id="modalImage" aria-hidden="true">
-          <span class="modal__image-label">Add project photo</span>
+          <span class="modal__image-label">Photo</span>
         </div>
         <div class="modal__body">
           <span class="modal__category" id="modalCategory"></span>
@@ -1128,7 +1104,6 @@ button:focus-visible,
     </div>
 
     <!-- ============== EXPERIENCE ============== -->
-    <!-- Kept intentionally short and scannable, same list treatment as Selected Work. -->
     <section class="section section--alt" id="experience">
       <div class="section__head reveal">
         <p class="kicker">04 / Experience</p>
@@ -1141,36 +1116,24 @@ button:focus-visible,
           <span class="experience-row__num mono">01</span>
           <div class="experience-row__info">
             <div class="experience-row__top">
-              <h3>[ Company Name ]</h3>
-              <span class="experience-row__type">Internship</span>
+              <h3>My1Hour</h3>
+              <span class="experience-row__type">Professional</span>
             </div>
-            <p>AI / Data Intern. Replace with a one-line summary of your responsibilities and impact.</p>
+            <p>Social Media Manager, India. Produced AI-assisted digital content and marketing campaigns, and designed social media posts and promotional visuals across multiple brand campaigns.</p>
           </div>
-          <span class="experience-row__date mono">2025 to Present</span>
+          <span class="experience-row__date mono">Feb 2025 to Dec 2025</span>
         </div>
 
         <div class="experience-row">
           <span class="experience-row__num mono">02</span>
           <div class="experience-row__info">
             <div class="experience-row__top">
-              <h3>Independent Client Work</h3>
-              <span class="experience-row__type">Freelance</span>
-            </div>
-            <p>Applied AI tools and data driven workflows across freelance client engagements.</p>
-          </div>
-          <span class="experience-row__date mono">2024 to 2025</span>
-        </div>
-
-        <div class="experience-row">
-          <span class="experience-row__num mono">03</span>
-          <div class="experience-row__info">
-            <div class="experience-row__top">
-              <h3>[ Organization Name ]</h3>
+              <h3>Guardian's Best Animal Rescue Foundation</h3>
               <span class="experience-row__type">Volunteer</span>
             </div>
-            <p>Replace with a one-line summary of the volunteer role and technical contribution.</p>
+            <p>Graphic Designer, Toronto, ON. Designed event posters and adoption posters, and supported event setup and coordination for community adoption drives.</p>
           </div>
-          <span class="experience-row__date mono">2024</span>
+          <span class="experience-row__date mono">June 2026 to Present</span>
         </div>
 
       </div>
@@ -1183,24 +1146,39 @@ button:focus-visible,
         <h2 class="section__title">Academic Background</h2>
       </div>
 
-      <div class="edu-card reveal">
-        <div class="edu-card__head">
-          <div>
-            <h3>Applied AI Solutions</h3>
-            <p class="edu-card__school">George Brown Polytechnic, Toronto, ON</p>
+      <div class="edu-list">
+
+        <div class="edu-card reveal">
+          <div class="edu-card__head">
+            <div>
+              <h3>Applied A.I. Solutions Development</h3>
+              <p class="edu-card__school">George Brown Polytechnic, Toronto, ON</p>
+            </div>
+            <span class="mono edu-card__dates">May 2026 to Apr 2027</span>
           </div>
-          <span class="mono edu-card__dates">2025 to 2026</span>
+          <p>
+            Postgraduate program focused on applied machine learning, data analytics, and
+            AI solution development for real-world business problems.
+          </p>
+          <ul class="tag-list">
+            <li>Machine Learning</li>
+            <li>NLP</li>
+            <li>Computer Vision</li>
+            <li>Data Engineering</li>
+            <li>Data Visualization</li>
+          </ul>
         </div>
-        <p>
-          Graduate certificate program focused on applied machine learning, data
-          analytics, and AI solution development for real-world business problems.
-        </p>
-        <ul class="tag-list">
-          <li>Machine Learning</li>
-          <li>Data Analytics</li>
-          <li>AI Solution Design</li>
-          <li>Applied Statistics</li>
-        </ul>
+
+        <div class="edu-card reveal">
+          <div class="edu-card__head">
+            <div>
+              <h3>Bachelor of Science, Computer Science</h3>
+              <p class="edu-card__school">Delhi University, New Delhi, India</p>
+            </div>
+            <span class="mono edu-card__dates">Nov 2021 to Jun 2024</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1213,22 +1191,16 @@ button:focus-visible,
 
       <div class="cert-grid">
         <div class="cert-card reveal">
-          <h3>[ Certification Name ]</h3>
-          <p class="cert-card__issuer">Issuing Organization</p>
-          <span class="mono cert-card__date">Add date</span>
-          <a href="#" class="cert-card__link">Verify credential &rarr;</a>
+          <h3>Enterprise Design Thinking Practitioner</h3>
+          <p class="cert-card__issuer">IBM SkillsBuild</p>
+          <span class="mono cert-card__date">Issued 30 Jul 2026</span>
+          <a href="https://www.credly.com/go/jSSR8b74" class="cert-card__link" target="_blank" rel="noopener">Verify credential &rarr;</a>
         </div>
         <div class="cert-card reveal">
-          <h3>[ Certification Name ]</h3>
-          <p class="cert-card__issuer">Issuing Organization</p>
-          <span class="mono cert-card__date">Add date</span>
-          <a href="#" class="cert-card__link">Verify credential &rarr;</a>
-        </div>
-        <div class="cert-card reveal">
-          <h3>[ Certification Name ]</h3>
-          <p class="cert-card__issuer">Issuing Organization</p>
-          <span class="mono cert-card__date">Add date</span>
-          <a href="#" class="cert-card__link">Verify credential &rarr;</a>
+          <h3>Google AI Essentials</h3>
+          <p class="cert-card__issuer">Google, via Coursera (5 courses)</p>
+          <span class="mono cert-card__date">Issued 21 Jan 2026</span>
+          <a href="https://coursera.org/verify/specialization/MNBUBZK5MEE3" class="cert-card__link" target="_blank" rel="noopener">Verify credential &rarr;</a>
         </div>
       </div>
     </section>
@@ -1241,7 +1213,7 @@ button:focus-visible,
           <h2 class="section__title">Get the Full Picture</h2>
           <p class="section__intro">Download my resume for full details on experience, skills, and education.</p>
         </div>
-        <a href="#" class="btn btn--primary btn--lg" download>Download Resume &darr;</a>
+        <a href="assets/resume.pdf" class="btn btn--primary btn--lg" download>Download Resume &darr;</a>
       </div>
     </section>
 
@@ -1264,7 +1236,7 @@ button:focus-visible,
 
   <!-- ============== FOOTER ============== -->
   <footer class="site-footer">
-    <p>Tanmay Kataria · Applied AI Solutions, George Brown Polytechnic · <span id="footerYear"></span></p>
+    <p>Tanmay Kataria · Applied A.I. Solutions Development, George Brown Polytechnic · <span id="footerYear"></span></p>
     <div class="site-footer__socials">
       <a href="https://www.linkedin.com/in/tanmaykataria/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
@@ -1371,37 +1343,37 @@ function initActiveNavHighlight() {
 const projectData = [
   {
     id: 'proj-1',
-    title: '[ Predictive Model Project ]',
+    title: 'Predicting Adolescent Depression from Social Media & Lifestyle Patterns',
     category: 'ml',
     categoryLabel: 'Machine Learning',
-    description: 'A short one-line summary of the model and the problem it solves.',
-    fullDescription: 'Replace with a full case-study description: the problem, your approach, the dataset used, and the outcome or accuracy achieved.',
-    role: 'Model design, training, and evaluation.',
-    stack: ['Python', 'Scikit-learn', 'Pandas'],
+    description: 'Classification models predicting adolescent depression risk from lifestyle and social media behavior data.',
+    fullDescription: 'Built and compared Random Forest, Logistic Regression, and Decision Tree classifiers on an imbalanced dataset (97.5% vs 2.5% class split) to flag depression risk from sleep, stress, anxiety, and screen-time features. Applied SMOTE to the training set only, tuned hyperparameters with GridSearchCV, and optimized for F2-score and recall rather than accuracy given the imbalance. The Decision Tree model caught every depressed case in the test set (recall of 1.0), with sleep hours, stress level, and anxiety level emerging as the strongest predictors.',
+    role: 'Built and evaluated the classification models, handled class-imbalance correction with SMOTE, and ran hyperparameter tuning.',
+    stack: ['Python', 'Scikit-learn', 'Random Forest', 'Logistic Regression', 'Decision Tree', 'SMOTE'],
     github: '#',
     demo: '#'
   },
   {
     id: 'proj-2',
-    title: '[ Data Analytics Dashboard ]',
+    title: 'Sales Data ETL & Reporting Pipeline',
     category: 'analytics',
     categoryLabel: 'Data Analytics',
-    description: 'A short one-line summary of the dataset and the insight it surfaces.',
-    fullDescription: 'Replace with a full case-study description: the business question, the analysis process, and the key findings.',
-    role: 'Data cleaning, analysis, and dashboard build.',
-    stack: ['Python', 'Pandas', 'Power BI'],
+    description: 'Group ETL pipeline that cleaned, normalized, and loaded retail sales data into a 3NF MySQL database.',
+    fullDescription: 'A six-person group project that extracted Orders, People, and Returns data from an Excel workbook, ran data-quality checks, cleaned and normalized the dataset into Third Normal Form across ten relational tables, and loaded it into MySQL with Python, Pandas, SQLAlchemy, and PyMySQL. Validated the load with row-count, null, and foreign-key checks, then built operational and executive reporting tables exported to CSV and PDF for business decision-making.',
+    role: 'Contributed to data cleaning, transformation, and MySQL loading scripts as part of a six-person team.',
+    stack: ['Python', 'Pandas', 'MySQL', 'SQLAlchemy'],
     github: '#',
     demo: '#'
   },
   {
     id: 'proj-3',
-    title: '[ Visualization Project ]',
+    title: '2025 Investment Shortlist, Tableau Story',
     category: 'viz',
     categoryLabel: 'Visualization',
-    description: 'A short one-line summary of what the visualization communicates.',
-    fullDescription: 'Replace with a full case-study description: what the visualization shows and why it matters to the audience.',
-    role: 'Visualization design and implementation.',
-    stack: ['Python', 'Matplotlib', 'Seaborn'],
+    description: 'An eight-visualization Tableau Story screening 60 companies into a defensible 2025 investment shortlist.',
+    fullDescription: 'A group project combining fundamentals, market performance, risk, liquidity, and data quality into a transparent multi-criteria screening framework for a 60-company sample. The Tableau Story moves from sector context to company-level evidence to a preference-sensitive shortlist, using forecasting, a risk-return matrix, company clustering, what-if scenario weighting, and a liquidity Pareto analysis. Found a positive but outlier-sensitive relationship between free cash flow growth and annual return (Pearson r of 0.698, falling to 0.399 once the influential outlier was removed).',
+    role: 'Contributed to the fundamentals-return correlation analysis and the risk-return and liquidity visualizations as part of a six-person team.',
+    stack: ['Tableau', 'Statistical Analysis', 'Excel'],
     github: '#',
     demo: '#'
   }
@@ -1420,7 +1392,7 @@ function renderProjects(list) {
   const grid = document.getElementById('projectGrid');
   grid.innerHTML = list.map(project => `
     <article class="project-card reveal is-visible" data-category="${project.category}">
-      <div class="project-card__image">Add project photo</div>
+      <div class="project-card__image">Photo</div>
       <div class="project-card__body">
         <span class="project-card__category">${project.categoryLabel}</span>
         <h3>${project.title}</h3>
