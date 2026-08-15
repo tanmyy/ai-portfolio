@@ -65,7 +65,7 @@
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
-  --max-width: 1200px;
+  --max-width: 1080px;
   --section-pad-y: 130px;
 
   /* Motion */
@@ -420,8 +420,14 @@ button:focus-visible,
    so content lines up identically whether the section has an alt background or not. */
 .section > * { max-width: var(--max-width); margin-left: auto; margin-right: auto; }
 
-/* Section headers sit narrower than the full content width, left-aligned within it. */
-.section__head { margin-bottom: 56px; max-width: 640px; margin-left: 0; }
+/* Section headers occupy the same centered box as every other direct child (inherited
+   from the rule above), so their left edge always matches the content below them,
+   regardless of viewport width. Only the text inside is constrained to a narrower
+   reading width, and stays left-aligned since it has no margin of its own. */
+.section__head { margin-bottom: 56px; }
+.section__head .kicker,
+.section__head .section__title,
+.section__head .section__intro { max-width: 640px; }
 .section__title { font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 12px; }
 .section__intro { color: var(--text-dim); }
 
