@@ -308,8 +308,16 @@ button:focus-visible,
   align-items: center;
 }
 
+.hero__role {
+  font-size: 0.85rem;
+  color: var(--cyan);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
 .hero__title {
-  font-size: clamp(2.2rem, 4.2vw, 3.5rem);
+  font-size: clamp(2.4rem, 4.8vw, 4rem);
   margin-bottom: 16px;
 }
 
@@ -347,25 +355,18 @@ button:focus-visible,
 
 .hero__visual {
   width: 100%;
-  max-width: 340px;
+  max-width: 420px;
   justify-self: center;
 }
-
-.photo-frame {
-  aspect-ratio: 1 / 1;
+#heroOrb {
   width: 100%;
-  border: 1px dashed var(--border-strong);
-  border-radius: var(--radius-lg);
-  background: var(--panel);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: 1 / 1;
+  display: block;
+  border-radius: 50%;
+  cursor: grab;
+  touch-action: none;
 }
-.photo-frame__label {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--text-faint);
-}
+#heroOrb.is-dragging { cursor: grabbing; }
 
 .scroll-cue {
   position: absolute;
@@ -406,11 +407,7 @@ button:focus-visible,
 .section > * { max-width: var(--max-width); margin-left: auto; margin-right: auto; }
 
 /* Section headers sit narrower than the full content width, left-aligned within it. */
-.section__head {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto 56px;
-}
+.section__head { margin-bottom: 56px; max-width: 640px; margin-left: 0; }
 .section__title { font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 12px; }
 .section__intro { color: var(--text-dim); }
 
@@ -508,16 +505,9 @@ button:focus-visible,
 
 .project-card__image {
   aspect-ratio: 1 / 1;
-  background: var(--panel-2);
-  border-bottom: 1px dashed var(--border-strong);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--text-faint);
-  text-align: center;
-  padding: 16px;
+  background-color: #0b0d16;
+  background-size: cover;
+  background-position: center;
 }
 
 .project-card__body { padding: 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
@@ -532,23 +522,11 @@ button:focus-visible,
 .project-card__body p { color: var(--text-dim); font-size: 0.9rem; flex: 1; }
 
 .project-card__footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-top: 8px;
 }
-.project-card__links { display: flex; gap: 14px; }
-.icon-link {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--text-dim);
-  border-bottom: 1px solid transparent;
-  transition: color var(--transition-fast), border-color var(--transition-fast);
-}
-.icon-link:hover { color: var(--cyan); border-color: var(--cyan); }
 
 .project-card__details-btn {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--violet);
   font-weight: 500;
 }
@@ -604,17 +582,10 @@ button:focus-visible,
 .modal__close:hover { background: rgba(255,255,255,0.14); }
 
 .modal__image {
-  aspect-ratio: 16/8;
-  background: var(--panel-2);
-  border-bottom: 1px dashed var(--border-strong);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.modal__image-label {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--text-faint);
+  aspect-ratio: 16/9;
+  background-color: #0b0d16;
+  background-size: cover;
+  background-position: center;
 }
 
 .modal__body { padding: 30px 32px 34px; }
@@ -628,11 +599,34 @@ button:focus-visible,
 .modal__body h3 { font-size: 1.5rem; margin: 10px 0 14px; }
 .modal__body > p { color: var(--text-dim); margin-bottom: 24px; }
 
+.modal__section { margin-bottom: 28px; }
+.modal__highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+.modal__highlights li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+.modal__highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+}
+
 .modal__meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  margin-bottom: 28px;
 }
 .modal__meta-label {
   font-family: var(--font-mono);
@@ -643,8 +637,6 @@ button:focus-visible,
   margin-bottom: 8px;
 }
 .modal__meta p { color: var(--text-dim); font-size: 0.92rem; }
-
-.modal__actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
 /* ---------- 11. EXPERIENCE LIST ---------- */
 .experience-list {
