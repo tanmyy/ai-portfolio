@@ -180,7 +180,7 @@ function renderProjects(list) {
 
   // Wire up "View Details" buttons for the freshly rendered cards
   grid.querySelectorAll('[data-project-id]').forEach(btn => {
-    btn.addEventListener('click', () => openProjectModal(btn.dataset.projectId));
+    btn.addEventListener('click', () => openProjectModal(btn.dataset.projectId, btn));
   });
 }
 
@@ -190,10 +190,10 @@ function wireFilterBar() {
     btn.addEventListener('click', () => {
       buttons.forEach(b => {
         b.classList.remove('is-active');
-        b.setAttribute('aria-selected', 'false');
+        b.setAttribute('aria-pressed', 'false');
       });
       btn.classList.add('is-active');
-      btn.setAttribute('aria-selected', 'true');
+      btn.setAttribute('aria-pressed', 'true');
 
       const filter = btn.dataset.filter;
       const filtered = filter === 'all'
@@ -204,11 +204,12 @@ function wireFilterBar() {
   });
 }
 
-function openProjectModal(id) {
+function openProjectModal(id, opener) {
   const project = projectData.find(p => p.id === id);
   if (!project) return;
 
   const modal = document.getElementById('projectModal');
+  modal.dataset.opener = opener ? opener.dataset.projectId : '';
   document.getElementById('modalImage').style.backgroundImage = `url('${project.image}')`;
   document.getElementById('modalCategory').textContent = project.categoryLabel;
   document.getElementById('modalTitle').textContent = project.title;
@@ -230,6 +231,13 @@ function closeProjectModal() {
   const modal = document.getElementById('projectModal');
   modal.hidden = true;
   document.body.style.overflow = '';
+  // Return focus to the button that opened the modal
+  const openerId = modal.dataset.opener;
+  if (openerId) {
+    const opener = document.querySelector(`[data-project-id="${openerId}"]`);
+    if (opener) opener.focus();
+  }
+  modal.dataset.opener = '';
 }
 
 function wireModal() {
