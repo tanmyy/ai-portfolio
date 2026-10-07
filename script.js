@@ -98,6 +98,50 @@ function initActiveNavHighlight() {
 --------------------------------------------------------- */
 const projectData = [
   {
+    id: 'proj-4',
+    title: 'TTC Line 2 Delay Predictor',
+    category: 'ml',
+    categoryLabel: 'Machine Learning',
+    image: 'assets/projects/ttc-delay-predictor.png',
+    description: 'A deep learning model forecasting daily delay minutes on Toronto\'s TTC Line 2 from 30 days of history.',
+    fullDescription: 'Group coursework for my Applied AI program: a time-series deep learning project forecasting daily TTC Line 2 delay minutes from a 30-day window of past delays, weather, and calendar features, trained on 4,215 daily records spanning 2014 to mid-2025.',
+    highlights: [
+      'Trained a 4-layer LSTM on 4,215 daily rows (2014 to mid-2025) with weather and calendar features joined in.',
+      'The final tuned model reached a test MAE of 40.3 minutes against a 42.8 train-mean baseline, evaluated on 974 unseen days.',
+      'Found weather adds almost nothing to daily delay regression; delays are people-driven, with miscellaneous and security incidents causing 68% of delay minutes.',
+      'Kept the framing honest: severe-delay days (8% of days, 150+ minutes) come from discrete random incidents and are not predictable from history alone.',
+      'Shipped a live Streamlit demo that predicts the delay for any date you pick.'
+    ],
+    role: 'Built the baseline LSTM, the first working proof-of-viability model plus the reusable training setup, as part of a five-person team.',
+    stack: ['Python', 'TensorFlow/Keras', 'LSTM', 'Pandas', 'Streamlit'],
+    links: [
+      { label: 'Live Demo', url: 'https://ttc-line2-delay-predictor.streamlit.app/' },
+      { label: 'GitHub', url: 'https://github.com/tanmyy/ttc-line2-delay-predictor' }
+    ]
+  },
+  {
+    id: 'proj-5',
+    title: 'RetailRocket Next-Category Recommender',
+    category: 'ml',
+    categoryLabel: 'Machine Learning',
+    image: 'assets/projects/retailrocket-recommender.png',
+    description: 'A GRU recommender predicting the next product category from e-commerce clickstream history.',
+    fullDescription: 'Group coursework: a next-item recommender trained on the RetailRocket e-commerce clickstream (10,000 users, 806 product categories), comparing LSTM and GRU architectures on a chronological 80/20 split with time-correct labeling.',
+    highlights: [
+      'Built GRU and LSTM models on 50-item click histories plus the last-viewed item\'s category, across 806 product categories.',
+      'The tuned GRU reached 67.68% top-1 and 79.10% top-5 accuracy, the best top-5 score in the group, and the model the team shipped.',
+      'Ran a 4-layer LSTM depth experiment, gaining 0.78pp top-1 over the 1-layer reference, and documented exactly where depth helps.',
+      'Kept the evaluation honest: a zero-parameter repeat-the-last-category rule still wins on top-1, because 68.9% of sessions stay in the same category.',
+      'Shipped a live Streamlit demo and a Hugging Face Space, both with a methodology note explaining what the numbers mean.'
+    ],
+    role: 'Ran the 4-layer LSTM depth experiment and rebuilt the final course notebook with per-member contributions, as part of a five-person team.',
+    stack: ['Python', 'TensorFlow/Keras', 'GRU', 'LSTM', 'Streamlit'],
+    links: [
+      { label: 'Live Demo', url: 'https://retailrocket-next-category-app.streamlit.app/' },
+      { label: 'Hugging Face', url: 'https://huggingface.co/spaces/tanmayy18/retailrocket-next-category' }
+    ]
+  },
+  {
     id: 'proj-1',
     title: 'Predicting Adolescent Depression from Social Media & Lifestyle Patterns',
     category: 'ml',
@@ -221,6 +265,18 @@ function openProjectModal(id, opener) {
 
   document.getElementById('modalStack').innerHTML =
     project.stack.map(tech => `<li>${tech}</li>`).join('');
+
+  const linksSection = document.getElementById('modalLinksSection');
+  const linksWrap = document.getElementById('modalLinks');
+  if (project.links && project.links.length) {
+    linksWrap.innerHTML = project.links
+      .map(l => `<a class="modal__link-btn" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`)
+      .join('');
+    linksSection.hidden = false;
+  } else {
+    linksWrap.innerHTML = '';
+    linksSection.hidden = true;
+  }
 
   modal.hidden = false;
   document.body.style.overflow = 'hidden';
